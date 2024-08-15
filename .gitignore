@@ -277,4 +277,4 @@ pyrightconfig.json
 
 ### Custom ###
 data.db
-dcard.xlsx
+*.xlsx
