@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "dcard-nccu-course-db-converter"
+name = "nccu-course-db-converter"
 version = "0.1.0"
 description = ""
 authors = ["dong <93483694+dongdong867@users.noreply.github.com>"]

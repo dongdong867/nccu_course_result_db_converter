@@ -1,1 +1,1 @@
-# dcard_nccu_course_db_converter
+# nccu_course_db_converter
