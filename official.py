@@ -29,7 +29,7 @@ con = sqlite3.connect("data.db")
 cur = con.cursor()
 cur.execute(
     """
-    CREATE TABLE IF NOT EXISTS TEST_RESULT (
+    CREATE TABLE IF NOT EXISTS RESULT (
         courseId TEXT NOT NULL,
         yearsem TEXT,
         name TEXT,
@@ -43,22 +43,24 @@ cur.execute(
 """
 )
 
-for course in official_df.head().iterrows():
-    cur.execute("SELECT teacher FROM COURSE WHERE id = ?", (YEARSEM + course[1][0],))
+for pos in range(len(official_df)):
+    cur.execute(
+        "SELECT teacher FROM COURSE WHERE id = ?", (YEARSEM + official_df.iloc[pos, 0],)
+    )
     teacher = cur.fetchone()
     teacher = teacher[0]
 
     cur.execute(
         "INSERT OR REPLACE INTO TEST_RESULT VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
         (
-            YEARSEM + course[1][0],
+            YEARSEM + official_df.iloc[pos, 0],
             YEARSEM,
-            course[1][1],
+            official_df.iloc[pos, 1],
             teacher,
-            course[1][2],
-            course[1][3],
-            course[1][4],
-            course[1][5],
+            official_df.iloc[pos, 2],
+            official_df.iloc[pos, 3],
+            official_df.iloc[pos, 4],
+            official_df.iloc[pos, 5],
         ),
     )
     con.commit()
